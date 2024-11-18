@@ -4,134 +4,152 @@
     <meta charset="utf-8">
     <title>Josue's Time of Day</title>
     <meta name="robots" content="noindex,nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {padding: 0; margin: 0;}
-        html {background-color: #ccc;}
+        /* General Reset */
+        * {padding: 0; margin: 0; box-sizing: border-box;}
         body {
-            font-family: Arial, Helvetica, sans-serif;
+            font-family: 'Roboto', Arial, Helvetica, sans-serif;
             max-width: 960px;
             width: 90%;
             margin: auto;
-            background-color: #fff;
             padding: 20px;
             min-height: 100%;
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: #fff;
+            transition: background 0.5s ease;
         }
-        img.flexible {
-            float: right;
-            display: inline-block;
-            padding: 20px;
-            max-width: 300px;
-            width: 33%;
-        }
-        p {margin: 10px;}
-        h1, h2, h3, h4, h5, h6 {
-            font-weight: normal;
-            margin: 10px;
-        }
-        h1.masthead {margin-top: 0;}
-        footer {
+        h1, h2, h3 {
             text-align: center;
-            clear: both;
+            margin-bottom: 20px;
         }
-        ::selection {
-            color: #E7DFC6;
-            background: #AD343E;
+        h1.masthead {
+            font-size: 2.5em;
+            font-weight: 700;
+            color: #fff;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        h3 {
+            font-size: 1.8em;
+            font-weight: 400;
+        }
+        p {
+            margin: 15px 0;
+            line-height: 1.5;
         }
         a {
-            color: #000000;
+            color: #ffcc00;
             text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease, background-color 0.3s ease;
         }
         a:hover {
-            color: #E7DFC6;
-            background-color: #AD343E;
-            text-decoration: none;
+            color: #000;
+            background-color: #ffcc00;
+            padding: 3px 6px;
+            border-radius: 5px;
+        }
+        img.flexible {
+            display: block;
+            margin: 20px auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+            max-width: 100%;
+        }
+        main {
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        }
+        footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+        footer small {
+            font-size: 0.9em;
+        }
+        ::selection {
+            color: #fff;
+            background: #2575fc;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1 class="masthead">Time of Day</h1>
+        <h1 class="masthead">Josue's Time of Day</h1>
     </header>
     <main>
-        <header><h3>A JavaScript Project by Josue Arteaga</h3></header>
+        <h3>A JavaScript Project by Josue Arteaga</h3>
         <h3 id="my-greeting">Greeting Goes Here</h3>
         <p id="day-of-week">Present day: </p>
         <p id="hour-of-day">Present time: </p>
-        <a href="https://www.youtube.com/watch?v=NfjsLmya1PI" target="_blank" style="color:#00000096">Click Me</a>
+        <a href="https://www.youtube.com/watch?v=NfjsLmya1PI" target="_blank">Watch a Cool Video</a>
         <p>This page checks what day and time it is using your computer's local time.</p>
-        <p>It uses the time to change the background color and image displayed on the right.</p>
+        <p>It uses the time to change the background color and image displayed below.</p>
         <img id="image-time" src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
-        <footer>
-            <p><small>&copy; 2022 by Josue Arteaga, All Rights Reserved ~ 
-                <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
-                <a id="css-checker" href="#" target="_blank">Check CSS</a>
-            </small></p>
-            <p><small>Contact me: 
-                <a id="email" href="mailto:jarteaga@sea.yearup.org" target="_blank">Email</a> - 
-                <a id="site" href="https://joeart15.github.io/portal/" target="_blank">Portal</a>
-            </small></p>
-        </footer>
     </main>
+    <footer>
+        <p><small>&copy; 2022 by Josue Arteaga, All Rights Reserved ~ 
+            <a id="html-checker" href="#" target="_blank">Check HTML</a> ~ 
+            <a id="css-checker" href="#" target="_blank">Check CSS</a>
+        </small></p>
+        <p><small>Contact me: 
+            <a id="email" href="mailto:jarteaga@sea.yearup.org" target="_blank">Email</a> - 
+            <a id="site" href="https://joeart15.github.io/portal/" target="_blank">Portal</a>
+        </small></p>
+    </footer>
     <script>
-        // Get the current date and time
         let myDate = new Date();
         let myHour = myDate.getHours();
 
-        // Validate hour in case of an error
         if (isNaN(myHour)) {
             console.error("Invalid hour detected!");
-            myHour = 12; // Default to noon
+            myHour = 12;
         }
 
         let myColor = "blue";
         let mySentence = "";
         let imageUrl = "";
-
-        // Array of days
         let daysOfWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
         let myDay = daysOfWeek[myDate.getDay()];
 
-        // Determine the time of day and corresponding message, color, and image
         if (myHour >= 5 && myHour < 12) {
-            myColor = "#008dff";
+            myColor = "linear-gradient(45deg, #FFD194, #D1913C)";
             mySentence = "Good Morning!";
             imageUrl = "images/morning.jpg";
         } else if (myHour >= 12 && myHour < 18) {
-            myColor = "#a200ff";
+            myColor = "linear-gradient(45deg, #FFE53B, #FF2525)";
             mySentence = "Good Afternoon!";
             imageUrl = "images/afternoon.jpg";
         } else if (myHour >= 18 && myHour < 23) {
-            myColor = "#ff5e00";
+            myColor = "linear-gradient(45deg, #373B44, #4286f4)";
             mySentence = "Good Evening!";
             imageUrl = "images/evening.jpg";
         } else {
-            myColor = "#8a0000";
+            myColor = "linear-gradient(45deg, #141E30, #243B55)";
             mySentence = "Good Night!";
             imageUrl = "images/night.jpg";
         }
 
-        // Update HTML with the calculated values
         document.getElementById("day-of-week").innerHTML = "Present day: " + myDay;
         document.getElementById("hour-of-day").innerHTML = "Present time: " + myHour + ":00";
         document.getElementById("my-greeting").innerHTML = mySentence;
-        document.body.style.backgroundColor = myColor;
+        document.body.style.background = myColor;
 
-        // Set the image and alt text
         document.getElementById("image-time").src = imageUrl;
         document.getElementById("image-time").alt = mySentence;
 
-        // Fallback for missing images
         document.getElementById("image-time").onerror = function() {
             this.src = "http://dummyimage.com/300x400";
         };
 
-        // Set the links for HTML and CSS validators
         if (location.protocol.startsWith("http")) {
             document.getElementById("html-checker").setAttribute("href", "https://validator.w3.org/nu/?doc=" + location.href);
             document.getElementById("css-checker").setAttribute("href", "https://jigsaw.w3.org/css-validator/validator?uri=" + location.href);
-        } else {
-            document.getElementById("html-checker").removeAttribute("href");
-            document.getElementById("css-checker").removeAttribute("href");
         }
     </script>
 </body>
