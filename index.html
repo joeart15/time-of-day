@@ -76,6 +76,17 @@
             color: #fff;
             background: #2575fc;
         }
+        .day-highlight {
+            text-align: center;
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ffcc00;
+            margin: 20px 0;
+            padding: 10px;
+            border: 2px dashed #ffcc00;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.7);
+        }
     </style>
 </head>
 <body>
@@ -90,6 +101,9 @@
         <a href="https://www.youtube.com/watch?v=NfjsLmya1PI" target="_blank">Watch a Cool Video</a>
         <p>This page checks what day and time it is using your computer's local time.</p>
         <p>It uses the time to change the background color and image displayed below.</p>
+        <div id="day-highlight" class="day-highlight">
+            Today is <span id="highlight-day">...</span>!
+        </div>
         <img id="image-time" src="http://dummyimage.com/300x400" alt="Time of Day Image" class="flexible">
     </main>
     <footer>
@@ -142,6 +156,9 @@
 
         document.getElementById("image-time").src = imageUrl;
         document.getElementById("image-time").alt = mySentence;
+
+        // Update the day highlight dynamically
+        document.getElementById("highlight-day").innerText = myDay;
 
         document.getElementById("image-time").onerror = function() {
             this.src = "http://dummyimage.com/300x400";
